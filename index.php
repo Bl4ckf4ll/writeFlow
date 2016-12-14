@@ -19,12 +19,12 @@
 
 					$files = scandir('files');
 
-					echo '<li><a href="http://localhost/exercises"> Create New </a></li>';
+					echo '<li><a href="http://localhost/exercises" class="btn btn-primary"> Create New </a></li>';
 					while (list($key, $file) = each($files)) {
 						$filename = basename('files/'.$file, '.txt');
 
 						if ($file != "." && $file != "..") {
-							echo "<li><a href='?file=$filename'>" . $file . "</a></li>";
+							echo "<li><a href='?file=$filename' class='file'>" . $file . "</a></li>";
 						}
 					}
 					?>
@@ -57,11 +57,11 @@
 				?>
 					<div class="form-group">
 						<label>Filename:</label>
-						<input type="text" name="filename" placeholder="filename" value="<?= $filename ?>">
+						<input type="text" name="filename" placeholder="filename" value="<?= htmlspecialchars($filename) ?>">
 					</div>
 					<div class="form-group">
 						<label for="filecontents">Content:</label>
-						<textarea name="filecontents" id="filecontents" cols="30" rows="10" placeholder="filecontents"><?= $filecontent ?></textarea>
+						<textarea name="filecontents" id="filecontents" cols="30" rows="10" placeholder="filecontents"><?= htmlspecialchars($filecontent) ?></textarea>
 					</div>
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary" value="Save">
