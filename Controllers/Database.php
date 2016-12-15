@@ -25,15 +25,24 @@ class Database {
 	public function query ($params) {
 		$query = $this->conn->prepare($params['query']);
 
-		if ( $params['params'] ) {
-			foreach ($params['params'] as $param => $value) {
-				$query->bindParam($param, $value);
+		try {
+			if ( $params['params'] ) {
+				foreach ($params['params'] as $param => $value) {
+					$query->bindParam($param, $value);
+				}
 			}
+
+			$query->execute();
+
+			if ($params['fetch']) {
+				$result = $query->fetchAll(PDO::FETCH_ASSOC);
+			} else {
+				$result = $query->rowCount() . ' Updated';
+			}
+
+		} catch (PDOException $e) {
+			return $e->getMessage();
 		}
-
-		$query->execute();
-
-		$result = $query->fetchAll(PDO::FETCH_ASSOC);
 
 		return $result;
 	}

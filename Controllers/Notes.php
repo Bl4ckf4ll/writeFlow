@@ -33,8 +33,9 @@ class Notes {
         }
         
         $result = $this->conn->query([
-           'query' => $query,
-           'params' => $params
+            'fetch' => true,
+            'query' => $query,
+            'params' => $params
         ]);
 
         if ($option === 'all') {
@@ -45,12 +46,12 @@ class Notes {
     }
 
     public function update ($noteId, $title, $content) {
-        $this->conn->query([
-            'query' => "UPDATE notes SET title = :title, content = :content",
-            'params' => [
-                ':title' => $title,
-                ':content' => $content
-            ]
+        $query = $this->conn->query([
+            'fetch' => false,
+            'query' => "UPDATE notes SET title = '$title', content = '$content' WHERE id = '$noteId'",
+            'params' => false
         ]);
+
+        return [$noteId, $title, $content, $query];
     }
 }

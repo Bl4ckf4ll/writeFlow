@@ -2,7 +2,7 @@
 	<h1>Your Notes</h1>
 	<hr>
 	<nav>
-		<ul>
+		<ul id="notes-list">
 			<?php
 			$notes = new writeFlow\Notes();
 

@@ -27,13 +27,13 @@ class Notes {
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send( "id=" + id );
     }
-
+    
     saveNote () {
         const id = this.noteFormEditor.getAttribute("data-id");
         const title = this.titleContainer.value;
         const content = this.contentContainer.innerHTML;
         const xhttp = new XMLHttpRequest();
-        
+
         xhttp.open("POST", "handlers/notes/update.php");
         xhttp.onreadystatechange = function () {
             if (this.status === 200 && this.readyState === 4) {
