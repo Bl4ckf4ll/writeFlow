@@ -1,5 +1,5 @@
-<?php 
-require_once './Controllers/Database.php';
+<?php
+	include_once 'load.php';
 ?>
 <html>
 	<head>
@@ -8,11 +8,14 @@ require_once './Controllers/Database.php';
 		<script src="https://use.typekit.net/lum8gwu.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 		<link rel="stylesheet" href="css/main.css">
+		<script src="js/notes.js"></script>
+		<script src="js/main.js"></script>
 	</head>
 	<body>
 		<header>
-			<a class="brand">Edit<span class="big">Note</span></a>
+			<a class="brand">write<span class="big">Flow</span></a>
 		</header>
+		<?php include_once 'inc/panel.php' ?>
 		<?php include_once 'inc/sidebar.php' ?>
 		<?php include_once 'inc/content.php' ?>
 	</body>

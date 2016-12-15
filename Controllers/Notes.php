@@ -1,32 +1,56 @@
 <?php
+namespace writeFlow;
 
-/**
-* Class to create, delete and modify files
-**/
+use writeFlow\Database;
 
 class Notes {
 
     protected $file;
     protected $filepath;
+    protected $conn;
 
-    function __construct ($filename) {
-        $this->filepath = 'files/' . $filename . '.txt';
-        $this->file = $filename;
+    function __construct () {
+        $this->conn = new Database();
     }
 
     function create ($contents) {
-        $f = fopen($this->filepath, 'w') or die('Ooops, there\'s an error :o');
-
-        fwrite($f, $contents);
-        fclose($f);
-
+        echo 'create code to create note';
         return true;
     }
 
-    function read () {
-        $f = fopen($this->filepath, 'r');
-        $contents = fread($f, filesize($this->filepath));
+    function read ($option = false, $noteId = null) {
+        switch ($option) {
+            case 'first':
+                $query = "SELECT * FROM notes WHERE id = :id";
+                $params = [
+                    ':id' => $noteId
+                ];
+                break;
+            case 'all':
+                $query = "SELECT * FROM notes";
+                $params = false;
+                break;
+        }
+        
+        $result = $this->conn->query([
+           'query' => $query,
+           'params' => $params
+        ]);
 
-        return ['filepath' => $this->filepath, 'filename' => $this->file, 'filecontent' => $contents];
+        if ($option === 'all') {
+            return $result;
+        } else {
+            return $result[0];
+        }
+    }
+
+    public function update ($noteId, $title, $content) {
+        $this->conn->query([
+            'query' => "UPDATE notes SET title = :title, content = :content",
+            'params' => [
+                ':title' => $title,
+                ':content' => $content
+            ]
+        ]);
     }
 }
