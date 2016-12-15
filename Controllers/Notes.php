@@ -4,7 +4,7 @@
 * Class to create, delete and modify files
 **/
 
-class Files {
+class Notes {
 
     protected $file;
     protected $filepath;

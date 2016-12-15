@@ -6,9 +6,12 @@ body,
 html {
   margin: 0;
   padding: 0;
-  font-family: "Roboto";
   font-size: 18px;
   font-weight: 800; }
+
+body,
+html {
+  font-family: "futura-pt"; }
 
 h1,
 h2,
@@ -16,10 +19,9 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 400; }
+  font-weight: 800; }
 
 code {
-  font-family: "Code New Roman";
   background-color: #d1d1d1; }
 
 a {
