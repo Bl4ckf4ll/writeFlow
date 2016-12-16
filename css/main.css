@@ -1,6 +1,8 @@
-@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,700|Slabo+27px';
-@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
-* {
+@import 'https://fonts.googleapis.com/css?family=Quicksand:400,700|Merriweather:400,700';
+@import 'http://weloveiconfonts.com/api/?family=entypo';
+*,
+*::before,
+*::after {
   box-sizing: border-box; }
 
 body,
@@ -13,8 +15,12 @@ html {
 
 body,
 html {
-  font-family: "futura-pt";
+  font-family: "Quicksand";
   font-size: 18px; }
+
+[class*="entypo-"]:before {
+  font-family: "entypo", sans-serif;
+  font-weight: normal; }
 
 h1,
 h2,
@@ -69,29 +75,47 @@ header {
       color: #fafafa;
       font-size: 35px; }
 
-.file-tree {
+#notes-tree {
   position: fixed;
   left: 5%;
   padding: 80px 20px;
   width: 25%;
   height: 100%;
-  background-color: #fbfbfb;
+  background-color: #fafafa;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
   overflow: auto; }
-  .file-tree nav ul {
+  #notes-tree nav ul {
     padding: 0;
     list-style-type: none; }
-    .file-tree nav ul .note {
+    #notes-tree nav ul .note {
       float: left;
       width: 100%;
+      margin-bottom: 10px;
       cursor: pointer; }
-      .file-tree nav ul .note .note-preview {
+      #notes-tree nav ul .note .note-preview {
+        position: relative;
         padding: 10px;
+        max-height: 150px;
+        font-family: "Merriweather";
+        overflow: hidden;
         transition: all 0.5s; }
-        .file-tree nav ul .note .note-preview .note-content {
+        #notes-tree nav ul .note .note-preview .note-content {
           color: rgba(16, 16, 16, 0.8); }
-        .file-tree nav ul .note .note-preview:hover {
+          #notes-tree nav ul .note .note-preview .note-content div {
+            display: inline;
+            margin-left: 10px; }
+            #notes-tree nav ul .note .note-preview .note-content div:first-of-type {
+              margin-left: 0; }
+        #notes-tree nav ul .note .note-preview:hover {
           background-color: #e1e1e1; }
+        #notes-tree nav ul .note .note-preview::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(transparent, rgba(250, 250, 250, 0.8)); }
 
 .main-content {
   float: right;
@@ -100,38 +124,46 @@ header {
 
 .btn {
   display: inline-block;
+  margin: 5px;
   padding: 10px 20px;
   background-color: transparent;
   border: none;
   font-size: 18px;
   cursor: pointer;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
   transition: all 0.5s; }
 
 .btn-primary {
   background-color: #1a237e;
-  color: #FFFFFF;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); }
+  color: #FFFFFF; }
   .btn-primary:hover {
     background-color: #060f6a;
     color: #f1f1f1;
     text-decoration: none; }
 
-#create-btn {
-  position: fixed;
-  right: 10px;
-  bottom: 10px;
+.fixed-buttons-container {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 10px;
-  width: 60px;
-  height: 60px;
-  background-color: #1a237e;
-  border-radius: 100%;
-  font-size: 30px;
-  font-weight: 100;
-  color: #ffffff;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
   z-index: 999; }
+  .fixed-buttons-container #save-note-button {
+    float: left; }
+  .fixed-buttons-container #create-btn {
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 60px;
+    height: 60px;
+    background-color: #1a237e;
+    border-radius: 100%;
+    font-size: 30px;
+    font-weight: 100;
+    color: #ffffff;
+    z-index: 999; }
 
 label {
   display: inline-block;
@@ -144,8 +176,8 @@ textarea,
   padding: 10px;
   width: 100%;
   background-color: #fbfbfb;
+  font-family: "Merriweather";
   border: none;
-  font-family: "Roboto";
   font-size: 18px;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); }
 
@@ -155,6 +187,7 @@ textarea,
 .note-editor #note-title {
   font-size: 30px; }
 .note-editor .note-div-editor {
+  font-weight: 400;
   min-height: 500px; }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,4 +1,4 @@
-<sidebar class="file-tree">
+<sidebar id="notes-tree">
 	<h1>Your Notes</h1>
 	<hr>
 	<nav>

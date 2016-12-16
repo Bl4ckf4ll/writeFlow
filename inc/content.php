@@ -11,9 +11,9 @@
 			<div class="note-div-editor" id="note-content" contenteditable="true">
 			</div>
 		</div>
-		<div class="form-group">
-			<input type="submit" class="btn btn-primary" value="Save">
-		</div>
 	</form>
-	<a href="#" id="create-btn">+</a>
+	<div class="fixed-buttons-container">
+		<input type="submit" class="btn btn-primary" id="save-note-button" value="Save">
+		<a href="#" id="create-btn" class="btn entypo-plus"></a>
+	</div>
 </div>

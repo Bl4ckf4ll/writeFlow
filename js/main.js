@@ -1,17 +1,24 @@
 window.onload = () => {
-    var notes = document.getElementsByClassName("note");
-    var noteEditForm = document.getElementById("note-editor");
+    const saveButton = _.$("#save-note-button");
+    const notes = new Notes();
+    const createButton = _.$("#create-btn");
+    let note = _.$(".note");
 
-    for (var i = 0; i < notes.length; i++ ) {
-        notes[i].addEventListener("click", function () {
-            let note = new Notes();
-            note.getNote(this.getAttribute("data-id"));
-        });
-    }
+    notes.getNotes();
 
-    noteEditForm.addEventListener("submit" || "keypress", function (e) {
-        e.preventDefault();
+    _.click(saveButton, () => {
         let note = new Notes();
         note.updateNote();
+        setTimeout( () => notes.getNotes(), 200);
+    });
+
+    _.click(createButton, function () {
+        _.toggleClass(this, 'expanded');
+    });
+
+    _.on("click", note, function () {
+        let note = new Notes();
+        console.log(this);
+        
     });
 }

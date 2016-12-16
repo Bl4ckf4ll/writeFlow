@@ -5,9 +5,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Edit Files</title>
-		<script src="https://use.typekit.net/lum8gwu.js"></script>
-		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 		<link rel="stylesheet" href="css/main.css">
+		<script src="js/helper/helpers.js"></script>
 		<script src="js/notes.js"></script>
 		<script src="js/main.js"></script>
 	</head>
