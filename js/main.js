@@ -9,9 +9,9 @@ window.onload = () => {
         });
     }
 
-    noteEditForm.addEventListener("submit", function (e) {
+    noteEditForm.addEventListener("submit" || "keypress", function (e) {
         e.preventDefault();
         let note = new Notes();
-        note.saveNote();
+        note.updateNote();
     });
 }

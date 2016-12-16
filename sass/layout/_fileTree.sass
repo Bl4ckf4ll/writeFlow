@@ -11,7 +11,14 @@
         ul
             padding: 0
             list-style-type: none
-            li
+            .note
                 float: left
                 width: 100%
                 cursor: pointer
+                .note-preview
+                    padding: 10px
+                    transition: all .5s
+                    .note-content
+                        color: transparentize($dark-color, 0.2)
+                    &:hover
+                        background-color: $light-color - 30

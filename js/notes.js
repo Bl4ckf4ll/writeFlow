@@ -28,7 +28,7 @@ class Notes {
         xhttp.send( "id=" + id );
     }
     
-    saveNote () {
+    updateNote () {
         const id = this.noteFormEditor.getAttribute("data-id");
         const title = this.titleContainer.value;
         const content = this.contentContainer.innerHTML;

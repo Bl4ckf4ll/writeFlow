@@ -6,11 +6,14 @@
 			<?php
 			$notes = new writeFlow\Notes();
 
-			foreach ($notes->read('all') as $note) {
-				echo "<li data-id='{$note['id']}' class='note'>{$note['title']}</li>";
-			}
-
-			?>
+			foreach ($notes->read('all') as $note) { ?>
+				<li data-id='<?= $note['id'] ?>' class='note'>
+					<div class="note-preview">
+						<div class="note-title"><?= $note['title'] ?></div>
+						<div class="note-content"><?= $note['content'] ?></div>
+					</div>
+				</li>
+			<?php } ?>
 		</ul>
 	</nav>
 </sidebar>
