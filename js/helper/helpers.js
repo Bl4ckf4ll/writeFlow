@@ -4,8 +4,12 @@ class _ {
     }
 
     static $ (element) {
-        if () {
+        if (element.indexOf('.') != -1) {
+            console.log('all');
             return document.querySelectorAll(element);
+        } else {
+            console.log('one');
+            return document.querySelector(element);
         }
     }
 
@@ -30,14 +34,19 @@ class _ {
     }
 
     static on (eventName, element, callback) {
-        if (element.length > 1) {    
-            document.addEventListener("change", function () {
-                for (var i = 0; i < element.length; i++ ) {
-                    element[i].addEventListener(eventName, callback);
+        document.addEventListener(eventName, function (e) {
+
+            if (typeof element === 'object') {
+                if (e.target.className === element.className) {
+                    callback();
                 }
-            });
-        } else {
-            
-        }
+            } else {
+                const el = document.querySelector(element);
+                
+                if (e.target.className === el.className) {
+                    callback(e.target);
+                }
+            }
+        });
     }
 }

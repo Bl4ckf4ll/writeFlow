@@ -6,7 +6,7 @@ window.onload = () => {
 
     notes.getNotes();
 
-    _.click(saveButton, () => {
+    _.click(saveButton, function () {
         let note = new Notes();
         note.updateNote();
         setTimeout( () => notes.getNotes(), 200);
@@ -16,9 +16,7 @@ window.onload = () => {
         _.toggleClass(this, 'expanded');
     });
 
-    _.on("click", note, function () {
-        let note = new Notes();
-        console.log(this);
-        
+    _.on("click", ".note-preview", function (e) {
+        console.log(e);
     });
 }
