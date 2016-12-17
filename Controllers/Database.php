@@ -26,20 +26,13 @@ class Database {
 		$query = $this->conn->prepare($params['query']);
 
 		try {
-			if ( $params['params'] ) {
-				foreach ($params['params'] as $param => $value) {
-					$query->bindParam($param, $value);
-				}
-			}
-
 			$query->execute();
 
 			if ($params['fetch']) {
 				$result = $query->fetchAll(PDO::FETCH_ASSOC);
 			} else {
-				$result = $query->rowCount() . ' Updated';
+				$result = $this->conn->LastInsertId();
 			}
-
 		} catch (PDOException $e) {
 			return $e->getMessage();
 		}

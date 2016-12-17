@@ -8,7 +8,8 @@ class Notes {
         xhttp.open("POST", "handlers/notes/show.php");
         xhttp.onreadystatechange = function () {
             if (this.status === 200 && this.readyState === 4) {
-                 callback( JSON.parse(this.responseText) );
+                console.log(this.response);
+                callback( JSON.parse(this.responseText) );
             }
         }
 
@@ -38,15 +39,13 @@ class Notes {
         const xhttp = new XMLHttpRequest();
     }
     
-    static updateNote (id, title, content, callback) {
+    static saveNote (id, title, content, callback) {
         const xhttp = new XMLHttpRequest();
 
-        xhttp.open("POST", "handlers/notes/update.php");
+        xhttp.open("POST", "handlers/notes/save.php");
         xhttp.onreadystatechange = function () {
             if (this.status === 200 && this.readyState === 4) {
-                let message = "Note Updated!";
-
-                callback(message);
+                callback(JSON.parse(this.response));
             }
         }
 

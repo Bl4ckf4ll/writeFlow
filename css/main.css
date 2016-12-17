@@ -114,8 +114,7 @@ header {
           bottom: 0;
           left: 0;
           width: 100%;
-          height: 100%;
-          background: linear-gradient(transparent, rgba(250, 250, 250, 0.8)); }
+          height: 100%; }
 
 .main-content {
   float: right;
@@ -186,7 +185,7 @@ textarea,
 
 .note-editor #note-title {
   font-size: 30px; }
-.note-editor .note-div-editor {
+.note-editor #note-content {
   font-weight: 400;
   min-height: 500px; }
 

@@ -10,19 +10,22 @@ window.onload = () => {
     Notes.getNotes(poblateTree);
 
     _.click(saveButton, function () {
-        Notes.updateNote(noteEditor.getAttribute("data-id"), titleContainer.value, contentContainer.innerHTML, data => {
+        Notes.saveNote(noteEditor.getAttribute("data-id"), titleContainer.innerHTML, contentContainer.innerHTML, note => {
+            noteEditor.setAttribute("data-id", note.id);
             Notes.getNotes(poblateTree);
         });
     });
 
     _.click(createButton, function () {
-        _.toggleClass(this, 'expanded');
+        noteEditor.setAttribute("data-id", 0);
+        titleContainer.innerHTML = "";
+        contentContainer.innerHTML = "";
     });
 
     _.on("click", ".note-preview", function (e) {
         Notes.getNote(e.getAttribute("data-id"), note => {
             noteEditor.setAttribute("data-id", note.id);
-            titleContainer.value = note.title;
+            titleContainer.innerHTML = note.title;
             contentContainer.innerHTML = note.content;
         });
     });
