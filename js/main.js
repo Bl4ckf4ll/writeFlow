@@ -1,14 +1,18 @@
 window.onload = () => {
-    const notes = new Notes();
     const createButton = _.$("#create-btn");
     const saveButton = _.$("#save-note-button");
+    const titleContainer = _.$("#note-title");
+    const contentContainer = _.$("#note-content");
+    const noteEditor = _.$("#note-editor");
+    const notesList = _.$("#notes-list");
 
-    notes.getNotes();
+
+    Notes.getNotes(poblateTree);
 
     _.click(saveButton, function () {
-        let notes = new Notes();
-        notes.updateNote();
-        setTimeout( () => notes.getNotes(), 200);
+        Notes.updateNote(noteEditor.getAttribute("data-id"), titleContainer.value, contentContainer.innerHTML, data => {
+            Notes.getNotes(poblateTree);
+        });
     });
 
     _.click(createButton, function () {
@@ -16,6 +20,31 @@ window.onload = () => {
     });
 
     _.on("click", ".note-preview", function (e) {
-        let note = Notes.getNote(e.getAttribute("data-id"));
+        Notes.getNote(e.getAttribute("data-id"), note => {
+            noteEditor.setAttribute("data-id", note.id);
+            titleContainer.value = note.title;
+            contentContainer.innerHTML = note.content;
+        });
     });
+
+    function poblateTree (notes) {
+        notesList.innerHTML = ''; //clean note-tree
+
+        notes.forEach( note => {
+            let html = '';
+
+            html += "<li class='note'>";
+            html += "<div data-id='"+ note.id +"' class='note-preview'>";
+            html += "<div class='note-title'>";
+            html += note.title;
+            html += "</div>"; // Close note-title
+            html += "<div class='note-content'>";
+            html += note.content;
+            html += "</div>"; // Close note-content
+            html += "</div>" // Close note-preview
+            html += "</li>";
+
+            notesList.innerHTML += html;
+        });
+    }
 }
