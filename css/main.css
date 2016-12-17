@@ -134,11 +134,16 @@ header {
 
 .btn-primary {
   background-color: #1a237e;
-  color: #FFFFFF; }
+  color: #ffffff; }
   .btn-primary:hover {
     background-color: #060f6a;
-    color: #f1f1f1;
     text-decoration: none; }
+
+.btn-info {
+  background-color: #03A9F4;
+  color: #ffffff; }
+  .btn-info:hover {
+    background-color: #0095e0; }
 
 .fixed-buttons-container {
   display: flex;
@@ -147,22 +152,6 @@ header {
   bottom: 10px;
   right: 10px;
   z-index: 999; }
-  .fixed-buttons-container #save-note-button {
-    float: left; }
-  .fixed-buttons-container #create-btn {
-    float: left;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    width: 60px;
-    height: 60px;
-    background-color: #1a237e;
-    border-radius: 100%;
-    font-size: 30px;
-    font-weight: 100;
-    color: #ffffff;
-    z-index: 999; }
 
 label {
   display: inline-block;

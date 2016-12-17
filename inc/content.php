@@ -14,7 +14,7 @@
 		</div>
 	</form>
 	<div class="fixed-buttons-container">
-		<input type="submit" class="btn btn-primary" id="save-note-button" value="Save">
-		<a href="#" id="create-btn" class="btn entypo-plus"></a>
+		<button id="save-note-button" class="btn btn-primary"> Save </button>
+		<button id="create-btn" class="btn btn-info entypo-plus"> Create Note </button>
 	</div>
 </div>

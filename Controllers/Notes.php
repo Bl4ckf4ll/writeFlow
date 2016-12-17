@@ -24,7 +24,7 @@ class Notes {
                 $query = "SELECT * FROM notes WHERE id = '$noteId'";
                 break;
             case 'all':
-                $query = "SELECT * FROM notes WHERE active = 1";
+                $query = "SELECT * FROM notes WHERE active = 1 ORDER BY id DESC";
                 break;
         }
         
