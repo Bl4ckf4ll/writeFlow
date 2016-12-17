@@ -1,14 +1,13 @@
 window.onload = () => {
-    const saveButton = _.$("#save-note-button");
     const notes = new Notes();
     const createButton = _.$("#create-btn");
-    let note = _.$(".note");
+    const saveButton = _.$("#save-note-button");
 
     notes.getNotes();
 
     _.click(saveButton, function () {
-        let note = new Notes();
-        note.updateNote();
+        let notes = new Notes();
+        notes.updateNote();
         setTimeout( () => notes.getNotes(), 200);
     });
 
@@ -17,6 +16,6 @@ window.onload = () => {
     });
 
     _.on("click", ".note-preview", function (e) {
-        console.log(e);
+        let note = Notes.getNote(e.getAttribute("data-id"));
     });
 }

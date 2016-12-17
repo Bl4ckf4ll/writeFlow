@@ -5,10 +5,8 @@ class _ {
 
     static $ (element) {
         if (element.indexOf('.') != -1) {
-            console.log('all');
             return document.querySelectorAll(element);
         } else {
-            console.log('one');
             return document.querySelector(element);
         }
     }

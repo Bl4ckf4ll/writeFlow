@@ -20,8 +20,8 @@ class Notes {
                 notes.forEach(function(note) {
                     let html = '';
 
-                    html += "<li data-id='"+ note.id +"' class='note'>";
-                    html += "<div class='note-preview'>";
+                    html += "<li class='note'>";
+                    html += "<div data-id='"+ note.id +"' class='note-preview'>";
                     html += "<div class='note-title'>";
                     html += note.title;
                     html += "</div>"; // Close note-title
@@ -39,12 +39,12 @@ class Notes {
         xhttp.send();
     }
 
-    getNote (noteId) {
+    static getNote (noteId) {
         const id = noteId;
         const xhttp = new XMLHttpRequest();
-        const titleContainer = this.titleContainer;
-        const contentContainer = this.contentContainer;
-        const noteEditor = this.noteFormEditor;
+        const titleContainer = _.$("#note-title");
+        const contentContainer = _.$("#note-content");
+        const noteEditor = _.$("#note-editor");
 
         noteEditor.setAttribute('data-id', id);
 
