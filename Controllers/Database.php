@@ -7,8 +7,8 @@ use PDO;
 class Database {
 	protected $conn;
 	private $host = "localhost";
-	private $username = "access";
-	private $password = "echelon";
+	private $username = "bl4ckf4ll";
+	private $password = "";
 	private $dbname = "writeFlow";
 
 	public function __construct () {

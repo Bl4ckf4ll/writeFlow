@@ -13,11 +13,6 @@ class Notes {
         $this->conn = new Database();
     }
 
-    function create ($contents) {
-        echo 'create code to create note';
-        return true;
-    }
-
     function read ($option = false, $noteId = null, $searchText = null) {
         switch ($option) {
             case 'first':
@@ -31,7 +26,7 @@ class Notes {
                 }
                 break;
         }
-        
+
         $result = $this->conn->query([
             'fetch' => true,
             'query' => $query,
@@ -45,9 +40,6 @@ class Notes {
     }
 
     public function save ($noteId, $title, $content) {
-        $title = $title;
-        $content = $content;
-
         if ($noteId != 0) {
             $query = "UPDATE notes SET title = '$title', content = '$content' WHERE id = '$noteId'";
         } else {
@@ -66,5 +58,14 @@ class Notes {
         }
 
         return ["id" => $id, "title" => $title, "content" => $content];
+    }
+
+    public function delete ($noteId) {
+        $query = "UPDATE notes SET active = 0 WHERE id = {$noteId}";
+
+        $this->conn->query([
+            'fetch' => false,
+            'query' => $query
+        ]);
     }
 }

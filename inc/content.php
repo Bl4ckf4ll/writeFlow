@@ -16,5 +16,6 @@
 	<div class="fixed-buttons-container">
 		<button id="save-note-button" class="btn btn-primary"> Save </button>
 		<button id="create-btn" class="btn btn-info entypo-plus"> Create Note </button>
+		<button id="delete-btn" class="btn btn-danger hide">Delete Note</button>
 	</div>
 </div>

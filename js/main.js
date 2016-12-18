@@ -1,4 +1,6 @@
 window.onload = () => {
+    /* global _, Notes */
+
     const createButton = _.$("#create-btn");
     const saveButton = _.$("#save-note-button");
     const titleContainer = _.$("#note-title");
@@ -6,52 +8,61 @@ window.onload = () => {
     const noteEditor = _.$("#note-editor");
     const notesList = _.$("#notes-list");
     const searchText = _.$("#searchText");
+    const deleteNote = _.$("#delete-btn");
 
     Notes.getNotes(populateTree);
 
-    _.click(saveButton, function () {
+    _.click(saveButton, function() {
         Notes.saveNote(noteEditor.getAttribute("data-id"), titleContainer.innerHTML, contentContainer.innerHTML, note => {
             noteEditor.setAttribute("data-id", note.id);
             Notes.getNotes(populateTree);
         });
     });
 
-    _.click(createButton, function () {
+    _.click(createButton, function() {
         noteEditor.setAttribute("data-id", 0);
         titleContainer.innerHTML = "";
         contentContainer.innerHTML = "";
+        _.addClass(deleteNote, "hide");
     });
 
-    _.on("click", ".note-preview", function (e) {
+    _.click(deleteNote, function() {
+        Notes.delete(noteEditor.getAttribute("data-id"), data => {
+            Notes.getNotes(populateTree);
+        });
+    });
+
+    _.on("click", ".note-preview", function(e) {
         Notes.getNote(e.getAttribute("data-id"), note => {
             noteEditor.setAttribute("data-id", note.id);
             titleContainer.innerHTML = note.title;
             contentContainer.innerHTML = note.content;
+            _.removeClass(deleteNote, "hide");
         });
     });
 
-    _.keydown( searchText, function () {
-        Notes.getNotes( populateTree, this.value);
+    _.keydown(searchText, function() {
+        Notes.getNotes(populateTree, this.value);
     });
 
-    function populateTree (notes) {
+    function populateTree(notes) {
         notesList.innerHTML = ''; //clean note-tree
 
-        notes.forEach( note => {
+        notes.forEach(note => {
             let html = '';
 
             html += "<li class='note'>";
-            html += "<div data-id='"+ note.id +"' class='note-preview'>";
+            html += "<div data-id='" + note.id + "' class='note-preview'>";
             html += "<div class='note-title'>";
             html += note.title;
             html += "</div>"; // Close note-title
             html += "<div class='note-content'>";
             html += note.content;
             html += "</div>"; // Close note-content
-            html += "</div>" // Close note-preview
+            html += "</div>"; // Close note-preview
             html += "</li>";
 
             notesList.innerHTML += html;
         });
     }
-}
+};

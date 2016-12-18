@@ -153,6 +153,12 @@ header {
   .btn-info:hover {
     background-color: #0095e0; }
 
+.btn-danger {
+  background-color: #c62828;
+  color: #ffffff; }
+  .btn-danger:hover {
+    background-color: #b21414; }
+
 .fixed-buttons-container {
   display: flex;
   align-items: center;
@@ -181,9 +187,15 @@ textarea,
   margin: 10px 0; }
 
 .note-editor #note-title {
+  height: 60px;
   font-size: 30px; }
 .note-editor #note-content {
   font-weight: 400;
   min-height: 500px; }
+
+.hide {
+  padding: 0;
+  width: 0;
+  height: 0; }
 
 /*# sourceMappingURL=main.css.map */

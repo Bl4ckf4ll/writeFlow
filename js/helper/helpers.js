@@ -1,9 +1,9 @@
 class _ {
-    constructor (element) {
+    constructor(element) {
 
     }
 
-    static $ (element) {
+    static $(element) {
         if (element.indexOf('.') != -1) {
             return document.querySelectorAll(element);
         } else {
@@ -11,42 +11,56 @@ class _ {
         }
     }
 
-    static addClass (element, theClass) {
-        element.className += ' ' + theClass;
-    }
-
-    static removeClass (element, theClass) {
-        element.className = element.className.replace(' ' + theClass, '');
-    }
-
-    static toggleClass (element, theClass) {
+    static hasClass(element, theClass) {
         if (element.className.indexOf(' ' + theClass) === -1) {
-            element.className += ' ' + theClass;
+            return false;
         } else {
+            return true;
+        }
+    }
+
+    static addClass(element, theClass) {
+        if (!_.hasClass(element, theClass)) {
+            element.className += ' ' + theClass;
+        }
+    }
+
+    static removeClass(element, theClass) {
+        if (_.hasClass(element, theClass)) {
             element.className = element.className.replace(' ' + theClass, '');
         }
     }
 
-    static click (element, callback) {
+    static toggleClass(element, theClass) {
+        if (_.hasClass(element, theClass)) {
+            _.addClass(element, theClass);
+        } else {
+            _.removeClass(element, theClass);
+        }
+    }
+
+    static click(element, callback) {
         element.addEventListener("click", callback);
     }
 
-    static keydown (element, callback) {
+    static keydown(element, callback) {
         element.addEventListener("keydown", callback);
     }
 
-    static on (eventName, element, callback) {
-        document.addEventListener(eventName, function (e) {
+    static on(eventName, element, callback) {
+        document.addEventListener(eventName, function(e) {
 
             if (typeof element === 'object') {
                 if (e.target.className === element.className) {
                     callback();
                 }
             } else {
-                const el = document.querySelector(element);
-                
-                if (e.target.className === el.className) {
-                    callback(e.target);
+                let el;
+
+                if (el = document.querySelector(element)) {
+                    if (e.target.className === el.className) {
+                        callback(e.target);
+                    }
                 }
             }
         });
