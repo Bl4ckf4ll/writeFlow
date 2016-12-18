@@ -2,18 +2,22 @@ class Notes {
     constructor () {
     }
 
-    static getNotes (callback) {
+    static getNotes (callback, title) {
+        if (!title) {
+            title = '';
+        }
+
         const xhttp = new XMLHttpRequest();
 
         xhttp.open("POST", "handlers/notes/show.php");
         xhttp.onreadystatechange = function () {
             if (this.status === 200 && this.readyState === 4) {
-                console.log(this.response);
                 callback( JSON.parse(this.responseText) );
             }
         }
 
-        xhttp.send();
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send('searchText=' + title);
     }
 
     static getNote (noteId, callback) {

@@ -5,14 +5,14 @@ window.onload = () => {
     const contentContainer = _.$("#note-content");
     const noteEditor = _.$("#note-editor");
     const notesList = _.$("#notes-list");
+    const searchText = _.$("#searchText");
 
-
-    Notes.getNotes(poblateTree);
+    Notes.getNotes(populateTree);
 
     _.click(saveButton, function () {
         Notes.saveNote(noteEditor.getAttribute("data-id"), titleContainer.innerHTML, contentContainer.innerHTML, note => {
             noteEditor.setAttribute("data-id", note.id);
-            Notes.getNotes(poblateTree);
+            Notes.getNotes(populateTree);
         });
     });
 
@@ -30,7 +30,11 @@ window.onload = () => {
         });
     });
 
-    function poblateTree (notes) {
+    _.keydown( searchText, function () {
+        Notes.getNotes( populateTree, this.value);
+    });
+
+    function populateTree (notes) {
         notesList.innerHTML = ''; //clean note-tree
 
         notes.forEach( note => {

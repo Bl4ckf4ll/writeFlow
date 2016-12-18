@@ -18,13 +18,17 @@ class Notes {
         return true;
     }
 
-    function read ($option = false, $noteId = null) {
+    function read ($option = false, $noteId = null, $searchText = null) {
         switch ($option) {
             case 'first':
                 $query = "SELECT * FROM notes WHERE id = '$noteId'";
                 break;
             case 'all':
-                $query = "SELECT * FROM notes WHERE active = 1 ORDER BY id DESC";
+                if ($searchText) {
+                    $query = "SELECT * FROM notes WHERE active = 1 AND title LIKE '%$searchText%' ORDER BY id DESC";
+                } else {
+                    $query = "SELECT * FROM notes WHERE active = 1 ORDER BY id DESC";
+                }
                 break;
         }
         

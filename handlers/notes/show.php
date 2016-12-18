@@ -16,7 +16,7 @@ if ($id) {
     ]);
 
 } else {
-    $notes = $notes->read('all');
+    $notes = $notes->read('all', false, $_POST['searchText']);
     $result = [];
 
     foreach ($notes as $note) {

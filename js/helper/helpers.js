@@ -31,6 +31,10 @@ class _ {
         element.addEventListener("click", callback);
     }
 
+    static keydown (element, callback) {
+        element.addEventListener("keydown", callback);
+    }
+
     static on (eventName, element, callback) {
         document.addEventListener(eventName, function (e) {
 

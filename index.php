@@ -12,7 +12,12 @@
 	</head>
 	<body>
 		<header>
-			<a class="brand">write<span class="big">Flow</span></a>
+			<div class="header-left">
+				<a class="brand">write<span class="big">Flow</span></a>
+			</div>
+			<div class="header-middle">
+				<input type="text" id="searchText" placeholder="Search">
+			</div>
 		</header>
 		<?php include_once 'inc/panel.php' ?>
 		<?php include_once 'inc/sidebar.php' ?>
